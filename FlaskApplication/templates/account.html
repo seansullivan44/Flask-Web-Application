@@ -1,0 +1,50 @@
+{%extends "master.html"%}
+
+{%block content%}
+
+  <div class="content-section">
+    <div class="media">
+      <img class="rounded-circle account-img" src="{{imageFile}}">
+      <div class="media-body">
+        <h2 class="account-heading">{{ current_user.username }}</h2>
+        <p class="text-secondary">{{ current_user.email }}</p>
+      </div>
+    </div>
+
+
+    <form method="POST" action="" enctype="multipart/form-data">
+      {{form.hidden_tag()}}
+      <fieldset class="form-group">
+        <legend>{{current_user.username}}'s Account Info:</legend>
+
+        <!-- Username -->
+        <div class="form-group">
+          <h4>Username:</h4>
+          {{form.username(class="form-control form-control-lg")}}
+        </div>
+
+        <!-- User Email -->
+        <div class="form-group">
+          <h4>Email:</h4>
+          {{form.email(class="form-control form-control-lg")}}
+        </div>
+
+        <!-- Profile picture upload -->
+        <div class="form-group">
+          {{form.profilePicture.label()}}
+          {{form.profilePicture(class="form-control-file center")}}
+          {% if form.profilePicture.errors %}
+            {% for error in form.profilePicture.errors %}
+              <span class = "text-danger">{{ error }}</span></br>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+      </fieldset>
+      <div class="form-group center">
+        {{form.submit(class="btn btn-success")}}
+      </div>
+    </form>
+  </div>
+
+{%endblock content%}

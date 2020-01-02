@@ -1,0 +1,69 @@
+{%extends "master.html"%}
+
+{%block content%}
+
+    <div class="content-section">
+      <form method="POST" action="">
+        {{form.hidden_tag()}}
+        <fieldset class="form-group">
+          <legend class="center">Login</legend>
+
+          <div class="form-group">
+            {{form.email.label(class="form-control-label")}}
+
+            {% if form.email.errors %}
+              {{form.email(class="form-control form-control-lg is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                  <span> <h1>{{error}}</h1></span>
+                {% endfor %}
+              </div>
+            {% else %}
+              {{form.email(class="form-control form-control-lg")}}
+            {% endif %}
+          </div>
+
+          <div class="form-group">
+            {{form.password.label(class="form-control-label")}}
+
+            {% if form.password.errors %}
+              {{form.password(class="form-control form-control-lg is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                  <span class="danger"> <h1>{{error}}</h1></span>
+                {% endfor %}
+              </div>
+            {% else %}
+              {{form.password(class="form-control form-control-lg")}}
+            {% endif %}
+          </div>
+
+          <div class="form-check center">
+            {{form.remember(class="form-check-input")}}
+            {{form.remember.label(class="form-check-label")}}
+          </div>
+
+        </fieldset>
+
+        <div class="form-group center">
+          {{form.login(class="btn btn-info")}}
+        </div>
+
+
+        <small class="text-muted">
+          <a href="#">Did you forget your password?</a>
+        </small>
+
+        <div style="float:right;">
+          <small class="text-muted">
+            Would you like to create an account? <a class"ml-2" href="{{url_for('register')}}" >Register</a>
+          </small>
+        </div>
+
+      </form>
+    </div>
+
+
+
+
+{%endblock content%}
